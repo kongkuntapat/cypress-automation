@@ -12,25 +12,30 @@ describe('Remove from Cart Tests', () => {
   });
 
   it('should remove a product from cart and verify cart is updated or empty', () => {
-    cy.get('body').then($body => {
+    cy.get('body').then(($body) => {
       if ($body.find('.cart_info tbody tr').length > 0) {
-        // ถ้ามีสินค้าก่อนลบ
-        cy.get('.cart_info tbody tr').its('length').then(initialCount => {
-          cy.get('.cart_info tbody tr').first().find('.cart_quantity_delete').click();
-          cy.wait(1000);
+        cy.get('.cart_info tbody tr')
+          .its('length')
+          .then((initialCount) => {
+            // คลิกปุ่มลบชิ้นแรก
+            cy.get('.cart_info tbody tr')
+              .first()
+              .find('.cart_quantity_delete')
+              .click();
 
-          // ตรวจสอบว่าหลังลบสินค้าแล้ว
-          cy.get('body').then($bodyAfter => {
-            if ($bodyAfter.find('.cart_info tbody tr').length > 0) {
-              cy.get('.cart_info tbody tr').its('length').should('be.lessThan', initialCount);
-            } else {
-              // กรณีตะกร้าว่าง ไม่มีสินค้าเลย
-              cy.contains('Cart is empty!').should('be.visible');
-            }
+            // รอจนกว่าแถวของตะกร้าจะเปลี่ยนแปลง
+            cy.get('.cart_info tbody tr').should(($newRows) => {
+              const newCount = $newRows.length;
+              // ถ้ายังมีสินค้าอยู่ ให้จำนวนลดลง
+              if (newCount > 0) {
+                expect(newCount).to.be.lessThan(initialCount);
+              } else {
+                // ถ้าเหลือ 0 แถว ให้เห็นข้อความ “Cart is empty!”
+                cy.contains('Cart is empty!').should('be.visible');
+              }
+            });
           });
-        });
       } else {
-        // กรณีไม่มีสินค้าเลยก่อนเทสต์ (อาจ error หรือแจ้ง)
         cy.log('No products in cart to remove');
       }
     });

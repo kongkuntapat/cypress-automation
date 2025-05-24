@@ -14,11 +14,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 import '@shelex/cypress-allure-plugin';
 
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // ป้องกันให้เทสต์ไม่ fail จาก error ที่มาจากเว็บแอปนี้
+// ป้องกันให้เทสต์ไม่ fail จาก error ที่มาจากเว็บแอปนี้
+Cypress.on('uncaught:exception', () => {
   return false;
 });
