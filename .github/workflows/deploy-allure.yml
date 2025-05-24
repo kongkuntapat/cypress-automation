@@ -4,6 +4,8 @@ on:
   push:
     branches: [ main ]
 
+# ตั้งสิทธิ์ให้ workflow อ่านเนื้อหาใน repo, เขียน gh-pages, 
+# และออก token สำหรับ id-token (ถ้ามีใช้ฟีเจอร์ OIDC)
 permissions:
   contents: read
   pages: write
@@ -18,7 +20,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          # ลบ persist-credentials ออก หรือสั่งเป็น true
+          # เปิด persist-credentials ให้ Actions ใช้ token เดียวกันในการ push กลับ
           persist-credentials: true
 
       - name: Setup Node.js
@@ -38,7 +40,10 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # ถ้า repo สาธารณะ ให้ปล่อยใช้ GITHUB_TOKEN ปกติได้
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # แต่ถ้าเจอ 403 ให้ตั้ง PAT แล้วใช้
+          # github_token: ${{ secrets.GH_PAGES_PAT }}
           publish_branch: gh-pages
           publish_dir: ./allure-report
           keep_files: false
