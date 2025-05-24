@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3007","should remove a product from cart and verify cart is updated or empty","","Sat May 24 15:17:45 UTC 2025","passed","Sat May 24 15:17:48 UTC 2025","","Remove from Cart Tests","",""
+"","7274","should fill payment details and confirm order","","Sat May 24 15:18:01 UTC 2025","passed","Sat May 24 15:18:08 UTC 2025","","Payment Tests","",""
+"","2874","should login successfully with valid credentials","","Sat May 24 15:17:37 UTC 2025","passed","Sat May 24 15:17:39 UTC 2025","","Login Tests with Fixture","",""
+"","2129","should add first product to cart and verify cart page has the product","","Sat May 24 15:17:41 UTC 2025","passed","Sat May 24 15:17:44 UTC 2025","","Add to Cart Tests","",""
+"","2832","should show error on invalid login","","Sat May 24 15:17:34 UTC 2025","passed","Sat May 24 15:17:36 UTC 2025","","Login Tests with Fixture","",""
+"","8582","should display checkout sections and allow placing order","","Sat May 24 15:17:50 UTC 2025","passed","Sat May 24 15:17:59 UTC 2025","","Checkout Page Tests","",""
