@@ -1,15 +1,13 @@
 name: CI & Deploy Allure Report
 
-# กำหนดเหตุการณ์ที่ trigger
 on:
   push:
-    branches: [ main ]    
+    branches: [ main ]
 
-# เพิ่มส่วนนี้ เพื่ออนุญาต GITHUB_TOKEN ให้เขียน Pages
 permissions:
-  contents: read         # สิทธิ์อ่าน repo
-  pages: write           # สิทธิ์เขียน branch gh-pages
-  id-token: write        # จำเป็นถ้าใช้ deployment ฟีเจอร์ขั้นสูง
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -20,7 +18,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          persist-credentials: false   # ป้องกัน overwrite ของ origin URL
+          # ลบ persist-credentials ออก หรือสั่งเป็น true
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
