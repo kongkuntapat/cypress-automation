@@ -1,0 +1,10 @@
+# ไลบรารีที่ install มา ไม่ต้อง commit
+node_modules/
+
+# โฟลเดอร์เก็บผลลัพธ์ Allure
+allure-results/
+allure-report/
+
+# โฟลเดอร์ที่ Cypress เก็บ screenshot/video
+cypress/screenshots/
+cypress/videos/
